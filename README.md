@@ -24,16 +24,6 @@ This code represents my first implementation of a **Linear Regression Algorithm*
 
 ---
 
-## Confidence Interval Z-Scores 📊
-
-| Confidence Level | Z-Score  |
-|------------------|----------|
-| 90%              | **1.645** |
-| 95%              | **1.960** |
-| 99%              | **2.576** |
-
----
-
 ## How the Code Works 🛠️
 
 ### Step 1: **Data Preprocessing**
