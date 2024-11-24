@@ -17,13 +17,13 @@ def model(x_train,y_train,n=100000,l_rate=0.0001):
         
 
     return A
-
+# Root Mean Squared Error
 def rmse(A, x_train, y_train):
-    predictions = np.dot(A, x_train)  # Compute predictions for all samples
-    errors = predictions - y_train  # Compute the residuals
-    return (np.mean(errors ** 2))**(1/2)  # Root Mean squared error
+    predictions = np.dot(A, x_train)  
+    errors = predictions - y_train
+    return (np.mean(errors ** 2))**(1/2)
 
-
+# Training Data
 training=pd.read_csv("Dummy Data HSS.csv")
 training.dropna(inplace=True)
 x_array=training[["TV","Radio","Social Media"]].values.T
@@ -35,8 +35,11 @@ y_train=training[["Sales"]].values.T
 Output_Matrix=model(x_train,y_train,70000,0.0001)[0]
 print(Output_Matrix)
 
+# RMSE
 error=rmse(Output_Matrix,x_train,y_train)
 
+
+# Predicting user's Results
 user_budgett,user_budgetr,user_budgets=map(float,input("What are you planning to invest in Television, Radio and Social Media Advertisement respectively in millions: ").split(','))
 
 budget=np.array([1,user_budgett,user_budgetr,user_budgett]).T
