@@ -77,13 +77,12 @@ This code represents my first implementation of a **Linear Regression Algorithm*
 
 ### User Inputs:
 ```text
-What are you planning to invest in Television Advertisement in millions: 98
-What are you planning to invest in Radio Advertisement in millions: 37.57
-What are you planning to invest in Social Media Advertisement in millions: 8.52
+What are you planning to invest in Television, Radio and Social Media Advertisement in millions: 98,37.57,8.52
 ```
 ### Output
 ```text
-Your expected revenue with 90% confidence is between 344.0320446293062 Millions to 353.7327452597863 Millions.
-Your expected revenue with 95% confidence is between 343.1032541434092 Millions to 354.66153574568335 Millions.
-Your expected revenue with 99% confidence is between 341.28695274876605 Millions to 356.47783714032647 Millions.
+Your expected revenue with 90% confidence is between [[344.0320446293062]] Millions to [[353.7327452597863]] Millions.
+Your expected revenue with 95% confidence is between [[343.1032541434092]] Millions to [[354.66153574568335]] Millions.
+Your expected revenue with 99% confidence is between [[341.28695274876605]] Millions to [[356.47783714032647]] Millions.
 ```
+
