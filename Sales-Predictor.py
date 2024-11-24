@@ -33,7 +33,6 @@ x_train=np.vstack([new_row,x_array])
 y_train=training[["Sales"]].values.T
 
 Output_Matrix=model(x_train,y_train,70000,0.0001)[0]
-print(Output_Matrix)
 
 # RMSE
 error=rmse(Output_Matrix,x_train,y_train)
