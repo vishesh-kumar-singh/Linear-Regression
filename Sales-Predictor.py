@@ -3,8 +3,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Gradient Descent Training Function
-def model(A,l_rate,n,x_train,y_train):
+def model(x_train,y_train,n=100000,l_rate=0.0001):
 
+    A=np.zeros((x_train.shape[0]))
     m=x_train.shape[1]
     for i in range(n):
 
@@ -31,32 +32,27 @@ x_train=np.vstack([new_row,x_array])
 
 y_train=training[["Sales"]].values.T
 
+Output_Matrix=model(x_train,y_train,70000,0.0001)[0]
+print(Output_Matrix)
 
-A=np.zeros((x_train.shape[0]))
+error=rmse(Output_Matrix,x_train,y_train)
 
-Output_Matrix=model(A,0.0001,70000,x_train,y_train)[0].tolist()
-intercept=Output_Matrix[0]
-slopet=Output_Matrix[1]
-sloper=Output_Matrix[2]
-slopes=Output_Matrix[3]
+user_budgett,user_budgetr,user_budgets=map(float,input("What are you planning to invest in Television, Radio and Social Media Advertisement respectively in millions: ").split(','))
 
-final_A=np.array(Output_Matrix)
+budget=np.array([1,user_budgett,user_budgetr,user_budgett]).T
 
-error=rmse(final_A,x_train,y_train)
+sales=np.dot(Output_Matrix,budget)
 
-user_budgett=float(input("What are you planning to invest in Television Advertisement in millions: "))
-user_budgetr=float(input("What are you planning to invest in Radio Advertisement in millions: "))
-user_budgets=float(input("What are you planning to invest in Social Media Advertisement in millions: "))
-sales=intercept+slopes*user_budgets+slopet*user_budgett+sloper*user_budgetr
-confidence_99=error*2.576
-confident99_sales_lower=sales-confidence_99
-confident99_sales_upper=sales+confidence_99
-confidence_95=error*1.96
-confident95_sales_lower=sales-confidence_95
-confident95_sales_upper=sales+confidence_95
-confidence_90=error*1.645
-confident90_sales_lower=sales-confidence_90
-confident90_sales_upper=sales+confidence_90
-print(f"Your expected revenue with 90% confidence is between {confident90_sales_lower} Millions to {confident90_sales_upper} Millions.")
-print(f"Your expected revenue with 95% confidence is between {confident95_sales_lower} Millions to {confident95_sales_upper} Millions.")
-print(f"Your expected revenue with 99% confidence is between {confident99_sales_lower} Millions to {confident99_sales_upper} Millions.")
+
+# Output
+confidence_levels = {90: 1.645,95: 1.96,99: 2.576}
+confidence_intervals = {}
+
+for level, z_score in confidence_levels.items():
+    confidence = error * z_score
+    lower_bound = sales - confidence
+    upper_bound = sales + confidence
+    confidence_intervals[level] = (lower_bound, upper_bound)
+
+for level, (lower, upper) in confidence_intervals.items():
+    print(f"Your expected revenue with {level}% confidence is between {lower} Millions to {upper} Millions.")
