@@ -9,13 +9,12 @@ x_train=training[["TV","Radio","Social Media"]].values
 
 y_train=training[["Sales"]].values
 
-model=LinearRegression(70000,0.0001)
+model=LinearRegression(60000,0.1)
 model.fit(x_train,y_train)
 
 user_budgett,user_budgetr,user_budgets=map(float,input("What are you planning to invest in Television, Radio and Social Media Advertisement respectively in millions: ").split(','))
 
 budget=np.array([user_budgett,user_budgetr,user_budgett]).reshape(1,-1)
-print(budget.shape)
 sales=model.predict(budget)
 error=model.training_rmse
 confidence_levels = {90: 1.645,95: 1.96,99: 2.576}
