@@ -52,12 +52,14 @@ class LinearRegression:
         x_normalizer=normalizer()
         x_normalized=x_normalizer.spnormalize(X_final,self.x_multiple,self.x_intercept)
         output=np.dot(x_normalized,self.A)
-        print(output)
         return ((output*self.y_multiple)+self.y_intercept)
     
     def test(self,x_test,y_test):
         new_row=np.ones((x_test.shape[0],1))
         X_final=np.hstack([new_row,x_test])
-        predictions = np.dot(X_final,self.A)  
+        x_normalizer=normalizer()
+        x_normalized=x_normalizer.spnormalize(X_final,self.x_multiple,self.x_intercept)
+        output = np.dot(x_normalized,self.A)
+        predictions=(output*self.y_multiple)+self.y_intercept
         errors = predictions - y_test
         return (np.mean(errors ** 2))**(1/2)
